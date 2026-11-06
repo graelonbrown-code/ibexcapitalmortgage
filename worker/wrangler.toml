@@ -1,0 +1,12 @@
+name = "ibex-leads"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = false
+routes = [
+  { pattern = "www.ibexcapitalmortgage.com/api/lead", zone_name = "ibexcapitalmortgage.com" },
+  { pattern = "ibexcapitalmortgage.com/api/lead", zone_name = "ibexcapitalmortgage.com" }
+]
+
+[[send_email]]
+name = "LEADS"
+destination_address = "graelon.brown@gmail.com"
