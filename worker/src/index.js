@@ -19,7 +19,7 @@ export default {
     const route = LICENSED.includes(lead.state) ? 'IBEX (licensed state)' : 'PARTNER REFERRAL (Ibex not licensed)';
     const text = `New pre-qualification request from ibexcapitalmortgage.com\n\nRoute: ${route}\nGoal: ${lead.goal}\nState: ${lead.state}  ZIP: ${lead.zip}\nHome price/value: ${lead.value}\nCredit: ${lead.credit}\nName: ${lead.name}\nPhone: ${lead.phone}\nEmail: ${lead.email}\nContact consent: Yes (wording version ${clean(d.consentVersion, 20)})\nSubmitted: ${new Date().toISOString()}\nIP: ${request.headers.get('CF-Connecting-IP') || ''}\nPage: ${clean(request.headers.get('referer'), 200)}\n`;
     try {
-      await env.LEADS.send({ from: { email: 'leads@ibexcapitalmortgage.com', name: 'Ibex Capital Mortgage' }, to: 'graelon.brown@gmail.com',
+      await env.LEADS.send({ from: { email: 'leads@debtreliefpath.net', name: 'Ibex Capital Mortgage Leads' }, to: 'graelon.brown@gmail.com',
         replyTo: lead.email, subject: `Ibex lead: ${lead.goal} - ${lead.state} - ${route.startsWith('IBEX') ? 'Ibex' : 'Partner'}`, text });
       return json({ ok: true }, 200);
     } catch (e) {
