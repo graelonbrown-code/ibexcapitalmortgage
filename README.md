@@ -16,6 +16,6 @@ Copy lives in `src/build.py`; state list in `src/states.py`. Licensed states and
 
 ## Before launch
 
-- Attorney review of the 45-state partner referral model and state page wording.
+- Attorney review of the 45-state partner referral model: approved 2026-11-06.
 - Add state license numbers to `LICENSED` if your states require them in ads.
 - Add your secure application (loan software) link if you want an "Apply" button beyond pre-qualification.
