@@ -37,7 +37,7 @@
         consent: true, consentVersion: "2026-11-06", website: d.website || "" };
       var btn = form.querySelector("button[type=submit]");
       btn.disabled = true; btn.textContent = "Sending...";
-      fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+      fetch("https://ibex-leads.graelon-brown.workers.dev/", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
         .then(function (r) { if (!r.ok) throw new Error(); location.href = "/thank-you/"; })
         .catch(function () {
           btn.disabled = false; btn.textContent = "Get pre-qualified";

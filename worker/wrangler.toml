@@ -1,11 +1,9 @@
 name = "ibex-leads"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
-workers_dev = false
-routes = [
-  { pattern = "www.ibexcapitalmortgage.com/api/lead", zone_name = "ibexcapitalmortgage.com" },
-  { pattern = "ibexcapitalmortgage.com/api/lead", zone_name = "ibexcapitalmortgage.com" }
-]
+# Runs on ibex-leads.graelon-brown.workers.dev so it works whether or not the
+# domain's DNS is on Cloudflare. The site's form posts here.
+workers_dev = true
 
 [[send_email]]
 name = "LEADS"

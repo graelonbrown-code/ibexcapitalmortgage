@@ -2,10 +2,14 @@
 const LICENSED = ['CA', 'CO', 'MT', 'TX', 'FL'];
 const allowed = /^https:\/\/((www\.)?ibexcapitalmortgage\.com|([a-z0-9-]+\.)?ibexcapitalmortgage\.pages\.dev)$/;
 const clean = (v, n) => String(v ?? '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
-const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json' } });
+let CORS = {};
+const json = (body, status) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...CORS } });
 
 export default {
   async fetch(request, env) {
+    const reqOrigin = request.headers.get('origin') || '';
+    CORS = allowed.test(reqOrigin) ? { 'Access-Control-Allow-Origin': reqOrigin, 'Vary': 'Origin' } : {};
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...CORS, 'Access-Control-Allow-Methods': 'POST', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '86400' } });
     if (request.method !== 'POST') return json({ ok: false, error: 'Use the form to send a request.' }, 405);
     const origin = request.headers.get('origin') || '';
     if (!allowed.test(origin)) return json({ ok: false, error: 'This request was not sent from our site.' }, 403);

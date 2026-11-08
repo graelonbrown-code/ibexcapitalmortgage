@@ -10,7 +10,7 @@ Copy lives in `src/build.py`; state list in `src/states.py`. Licensed states and
 
 1. **Move DNS to Cloudflare.** Cloudflare > Add a site > ibexcapitalmortgage.com. Before switching nameservers at your registrar, confirm Cloudflare copied the **MX and TXT records** for info@ibexcapitalmortgage.com, or email will stop.
 2. **Pages project.** Workers & Pages > Create > Pages > Connect to Git > this repo. Build command `node src/build.mjs`, output folder `dist`. Add custom domains `www.ibexcapitalmortgage.com` and `ibexcapitalmortgage.com`.
-3. **Lead emails.** In `worker/` run `npx wrangler deploy`. Notifications are sent from leads@debtreliefpath.net (that domain already has Email Routing), so do **not** turn on Email Routing for ibexcapitalmortgage.com: it would replace the HostGator MX records and break info@ibexcapitalmortgage.com. Each lead email's subject says "Ibex" (licensed state) or "Partner" (refer out).
+3. **Lead emails.** The form posts to the `ibex-leads` Worker at ibex-leads.graelon-brown.workers.dev (folder `worker/`, deployed by Cloudflare from this repo). It emails graelon.brown@gmail.com from leads@debtreliefpath.net, so it works whichever company runs the domain's DNS. Each subject says "Ibex" (licensed state) or "Partner" (refer out).
 4. **Keep the HostGator account.** It still runs info@ibexcapitalmortgage.com email and your other sites. You can delete the Ibex WordPress install once the new site is live; old page and blog URLs redirect to the new pages (`_redirects`).
 5. Submit `https://www.ibexcapitalmortgage.com/sitemap.xml` in Google Search Console.
 
