@@ -391,7 +391,8 @@ def extras():
     llms += [f"- [{v['nav']}]({SITE}/{k}/)" for k, v in PROGRAMS.items()] + ["", "## States"] + [f"- [{n}]({SITE}/states/{slug(n)}/){' (Ibex licensed)' if a in LICENSED else ''}" for n, a, *_ in STATES]
     llms += ["", "## Company", f"- [Licensing]({SITE}/licensing/)", f"- [Behind on your mortgage]({SITE}/behind-on-mortgage/)", f"- Related: [Debt Relief Path]({DEBT}) for debt settlement and bankruptcy referrals"]
     open(os.path.join(ROOT, "llms.txt"), "w").write("\n".join(llms) + "\n")
-    red = ["https://ibexcapitalmortgage.com/* https://www.ibexcapitalmortgage.com/:splat 301"] + [f"{a} {b} 301" for a, b in OLD.items()]
+    # Non-www to www is handled where the bare domain is served (HostGator .htaccess, or a Cloudflare rule later).
+    red = sorted((f"{a} {b} 301" for a, b in OLD.items()), key=lambda l: "*" in l.split()[0])
     open(os.path.join(ROOT, "_redirects"), "w").write("\n".join(red) + "\n")
     open(os.path.join(ROOT, "_headers"), "w").write("/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n\n/assets/*\n  Cache-Control: public, max-age=604800\n")
     open(os.path.join(ROOT, "assets", "favicon.svg"), "w").write(LOGO.replace('aria-hidden="true"', 'xmlns="http://www.w3.org/2000/svg"'))

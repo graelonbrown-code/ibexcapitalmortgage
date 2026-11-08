@@ -1,4 +1,3 @@
-https://ibexcapitalmortgage.com/* https://www.ibexcapitalmortgage.com/:splat 301
 /sample-page-2/ / 301
 /news-grid/ /faq/ 301
 /news-list/ /faq/ 301
@@ -14,7 +13,7 @@ https://ibexcapitalmortgage.com/* https://www.ibexcapitalmortgage.com/:splat 301
 /5-telltale-signs-of-an-overpriced-listing/ /first-time-homebuyers/ 301
 /4-property-risks-that-can-impact-financing/ /loan-options/ 301
 /can-homebuyers-save-money-by-waiting/ /first-time-homebuyers/ 301
-/wp-admin/* / 301
 /wp-login.php / 301
+/wp-admin/* / 301
 /shop/* / 301
 /cart/* / 301
